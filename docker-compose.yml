@@ -12,7 +12,7 @@ services:
       #MYSQL_USER: reibegaj
       #MYSQL_PASSWORD: reidatabase
     volumes:
-      - "./mariadb:/var/ib/mariadb"
+      - mariadb:/var/lib/mysql
 
   
   web:
@@ -27,3 +27,6 @@ services:
      PMA_HOST: mariadb-server
      PMA_USER: root
      PMA_PASSWORD: reidb
+
+volumes:
+  mariadb:
