@@ -28,5 +28,10 @@ services:
      PMA_USER: root
      PMA_PASSWORD: reidb
 
+  app:
+    build:
+      context: ./
+
+
 volumes:
   mariadb:
