@@ -1,10 +1,18 @@
 import mariadb 
+import os
+
+#user = os.environ['MY_USER']
+#password = os.environ ['MY_PASS']
+#host = ['HOST_IP']
+#database = ['DB_NAME']
 
 conn = mariadb.connect(
-    user="root",
-    password="reidb",
-    host="172.20.0.2",
-    database="ReiDatabase")
+    user = os.environ["DB_USER"],
+    password = os.environ["DB_PASS"],
+    host = os.environ["DB_HOST"],
+    database = os.environ["DB_NAME"]
+    )
+
 cur = conn.cursor() 
 
 #retrieving information 
