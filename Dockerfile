@@ -1,9 +1,11 @@
 FROM python:3.8
 
-WORKDIR /app
-COPY . /app
+WORKDIR ./app
 
+COPY ./requirements.txt ./
 RUN pip install -r requirements.txt
 
-ENTRYPOINT ["python"]
+COPY . .
+
+ENTRYPOINT ["python3"]
 CMD ["database.py"]
