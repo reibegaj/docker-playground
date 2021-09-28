@@ -6,28 +6,19 @@ services:
     image: mariadb:latest
     restart: always
     command: --default-authentication-plugin=mysql_native_password
-    environment:
-      MYSQL_ROOT_PASSWORD: reidb  
-      #MYSQL_USER: reibegaj
-      #MYSQL_PASSWORD: reidatabase
+    env_file:
+      - ./db.env
     volumes:
       - "./maria-data:/var/lib/mysql"
   web:
       image: phpmyadmin:latest
       ports:
-         - "80:80"
-      environment:
-        MYSQL_ROOT_PASSWORD: reidb
-        PMA_HOST: mariadb-server
-        PMA_USER: root
-        PMA_PASSWORD: reidb
-
+         - "81:80"
+      env_file:
+         - ./web.env   
   app:
       build:
         context: ./app
         dockerfile: ../Dockerfile
-      environment:
-         DB_USER: "root"
-         DB_PASS: "reidb"
-         DB_HOST: "db"
-         DB_NAME: "Rei's DB" 
+      env_file:
+         - ./app/app.env
