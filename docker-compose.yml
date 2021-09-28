@@ -1,0 +1,26 @@
+version: "3"
+
+services: 
+     
+  db:
+    image: mariadb:latest
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    env_file:
+      - ./db.env
+    volumes:
+      - "./maria-data:/var/lib/mysql"
+  web:
+      image: phpmyadmin:latest
+      ports:
+         - "80:80"
+      env_file:
+         - ./web.env   
+  app:
+      build:
+        context: ./app
+        dockerfile: ../Dockerfile
+      env_file:
+         - ./app/app.env
+      environment:
+         - "ENV=docker"
