@@ -13,7 +13,7 @@ services:
   web:
       image: phpmyadmin:latest
       ports:
-         - "81:80"
+         - "80:80"
       env_file:
          - ./web.env   
   app:
@@ -22,3 +22,5 @@ services:
         dockerfile: ../Dockerfile
       env_file:
          - ./app/app.env
+      environment:
+         - "ENV=docker"
